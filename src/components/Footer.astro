@@ -1,0 +1,69 @@
+---
+// Footer.astro
+---
+<footer>
+  <a href="/" class="logo-link">
+    <img src="/cordeiro-lima-logo-dark.svg" alt="Cordeiro Lima" class="logo-img" loading="lazy" />
+  </a>
+  <p><a href="mailto:pedro@cordeirolima.net" class="email-link">pedro@cordeirolima.net</a></p>
+</footer>
+
+<style>
+  footer {
+    padding: 40px 80px;
+    border-top: 1px solid rgba(247, 245, 240, 0.08);
+    background: var(--color-obsidian);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo-link {
+    display: block;
+    text-decoration: none;
+  }
+
+  .logo-img {
+    height: 24px;
+    display: block;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+  }
+
+  .logo-img:hover {
+    opacity: 0.8;
+  }
+
+  footer p {
+    font-size: 13px;
+    color: rgba(247, 245, 240, 0.3);
+    font-family: var(--font-mono);
+  }
+
+  .email-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .email-link:hover {
+    color: rgba(247, 245, 240, 0.6);
+  }
+
+  /* Tablet: 768px – 1024px */
+  @media (max-width: 1024px) {
+    footer {
+      padding: 32px 40px;
+    }
+  }
+
+  /* Mobile: até 767px */
+  @media (max-width: 767px) {
+    footer {
+      padding: 28px 24px;
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+    }
+  }
+</style>

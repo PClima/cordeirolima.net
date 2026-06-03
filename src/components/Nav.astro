@@ -1,0 +1,103 @@
+---
+// Nav.astro
+---
+
+<header>
+  <nav aria-label="Navegação principal">
+    <a href="/" class="logo-link">
+      <img src="/cordeiro-lima-logo.svg" alt="Cordeiro Lima" class="logo-img" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="#projetos">Projetos</a></li>
+      <li>
+        <a href="#falar-projeto" class="btn-nav">Falar sobre seu projeto</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 80px;
+    border-bottom: 1px solid rgba(26, 25, 22, 0.08);
+    background: var(--color-ivory);
+  }
+
+  .logo-link {
+    display: block;
+    text-decoration: none;
+  }
+
+  .logo-img {
+    height: 28px;
+    display: block;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a:not(.btn-nav) {
+    font-size: 14px;
+    color: var(--color-stone);
+    text-decoration: none;
+    font-family: var(--font-body);
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:not(.btn-nav):hover {
+    color: var(--color-obsidian);
+  }
+
+  .btn-nav {
+    display: inline-block;
+    background: var(--color-obsidian);
+    color: var(--color-ivory);
+    padding: 10px 24px;
+    font-size: 14px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .btn-nav:hover {
+    opacity: 0.9;
+  }
+
+  /* Tablet: 768px – 1024px */
+  @media (max-width: 1024px) {
+    nav {
+      padding: 24px 40px;
+    }
+  }
+
+  /* Mobile: até 767px */
+  @media (max-width: 767px) {
+    nav {
+      padding: 20px 24px;
+    }
+    .nav-links li:not(:last-child) {
+      display: none;
+    }
+    .btn-nav {
+      padding: 10px 16px;
+      font-size: 13px;
+    }
+  }
+</style>

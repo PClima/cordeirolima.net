@@ -1,0 +1,20 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  return [
+    { params: { slug: 'projeto-exemplo' } },
+  ];
+}
+
+const { slug } = Astro.params;
+---
+
+<Layout title={`Projeto - ${slug} | Cordeiro Lima`} description={`Detalhes do projeto ${slug}`}>
+  <main>
+    <article>
+      <h1>Projeto: {slug}</h1>
+      <!-- Detalhes do projeto virão aqui -->
+    </article>
+  </main>
+</Layout>

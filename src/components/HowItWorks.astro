@@ -1,0 +1,144 @@
+---
+// HowItWorks.astro
+---
+<section class="how" id="como-funciona">
+  <div class="how-header">
+    <div>
+      <p class="col-label">Processo</p>
+      <h2>Como funciona</h2>
+    </div>
+  </div>
+  <div class="how-steps">
+    <div class="how-step">
+      <p class="step-num">01 — Discovery</p>
+      <div class="step-accent"></div>
+      <p class="step-title">Entender antes de construir</p>
+      <p class="step-desc">
+        Mapeio como seus processos funcionam hoje — os fluxos reais, não os ideais. Identifico onde estão os gargalos e o que faz mais sentido integrar primeiro.
+      </p>
+    </div>
+    <div class="how-step">
+      <p class="step-num">02 — Construção</p>
+      <div class="step-accent"></div>
+      <p class="step-title">Resultado visível em etapas</p>
+      <p class="step-desc">
+        Entrego em ciclos curtos. Você vê o sistema funcionando antes de chegar ao final — e pode ajustar o caminho conforme o negócio evolui.
+      </p>
+    </div>
+    <div class="how-step">
+      <p class="step-num">03 — Entrega</p>
+      <div class="step-accent"></div>
+      <p class="step-title">Seu time opera sem depender de mim</p>
+      <p class="step-desc">
+        O sistema entregue é documentado e funciona de forma autônoma. Se algo precisar mudar, você sabe onde mexer — ou me chama.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .how {
+    padding: 96px 80px;
+    border-bottom: 1px solid rgba(26, 25, 22, 0.08);
+    background: var(--color-ivory);
+  }
+
+  .how-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 72px;
+  }
+
+  .col-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+    margin-bottom: 32px;
+  }
+
+  .how h2 {
+    font-family: var(--font-display);
+    font-size: 38px;
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--color-obsidian);
+  }
+
+  .how-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(26, 25, 22, 0.08);
+  }
+
+  .how-step {
+    background: var(--color-ivory);
+    padding: 48px 40px;
+  }
+
+  .step-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+    margin-bottom: 32px;
+  }
+
+  .step-accent {
+    width: 32px;
+    height: 3px;
+    background: var(--color-grove);
+    margin-bottom: 32px;
+  }
+
+  .step-title {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--color-obsidian);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .step-desc {
+    font-size: 15px;
+    color: var(--color-stone);
+    line-height: 1.7;
+  }
+
+  /* Tablet: 768px – 1024px */
+  @media (max-width: 1024px) {
+    .how {
+      padding: 72px 40px;
+    }
+    .how h2 {
+      font-size: 30px;
+    }
+    .how-steps {
+      grid-template-columns: 1fr;
+    }
+    .how-step {
+      padding: 40px;
+    }
+  }
+
+  /* Mobile: até 767px */
+  @media (max-width: 767px) {
+    .how {
+      padding: 56px 24px;
+    }
+    .how h2 {
+      font-size: 28px;
+    }
+    .how-header {
+      margin-bottom: 40px;
+    }
+    .how-step {
+      padding: 36px 24px;
+    }
+  }
+</style>

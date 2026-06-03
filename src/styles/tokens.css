@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@theme {
+  /* Cores */
+  --color-obsidian: #1A1916;
+  --color-ivory: #F7F5F0;
+  --color-grove: #3B6D11;
+  --color-mint: #EAF3DE;
+  --color-stone: #8A7F6E;
+  --color-charcoal: #2C2C2A;
+
+  /* Tipografia — famílias */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'DM Mono', 'Courier New', monospace;
+
+  /* Tipografia — escala */
+  --text-h1-size: 48px;
+  --text-h1-weight: 500;
+  --text-h1-line-height: 1.1;
+
+  --text-h2-size: 32px;
+  --text-h2-weight: 500;
+  --text-h2-line-height: 1.15;
+
+  --text-h3-size: 22px;
+  --text-h3-weight: 500;
+  --text-h3-line-height: 1.25;
+
+  --text-body-size: 16px;
+  --text-body-weight: 400;
+  --text-body-line-height: 1.75;
+
+  --text-support-size: 14px;
+  --text-support-color: var(--color-stone);
+
+  --text-label-size: 11px;
+  --text-label-weight: 500;
+  --text-label-transform: uppercase;
+  --text-label-spacing: 0.12em;
+
+  --text-mono-size: 13px;
+  --text-mono-weight: 400;
+
+  /* Espaçamento */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+  --space-xl: 64px;
+  --space-2xl: 128px;
+}
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-ivory);
+    color: var(--color-obsidian);
+    font-family: var(--font-body);
+  }
+}

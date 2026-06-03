@@ -1,0 +1,133 @@
+---
+// Services.astro
+---
+<section class="services">
+  <div class="services-header">
+    <p class="col-label">O que faço</p>
+    <h2>Serviços</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon"><span>⇄</span></div>
+      <p class="service-title">Integração de sistemas</p>
+      <p class="service-desc">
+        Conecto ferramentas e sistemas que hoje funcionam de forma isolada — financeiro, comercial, operacional. A informação passa a fluir automaticamente entre eles.
+      </p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><span>⟳</span></div>
+      <p class="service-title">Automação de processos</p>
+      <p class="service-desc">
+        Elimino tarefas manuais e repetitivas. O que hoje depende de alguém lembrar de fazer passa a acontecer automaticamente, no momento certo.
+      </p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><span>◻</span></div>
+      <p class="service-title">Desenvolvimento de sites</p>
+      <p class="service-desc">
+        Sites institucionais e landing pages para pequenas empresas — com foco em clareza, velocidade e resultado. Sem complicar o que não precisa ser complicado.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    padding: 96px 80px;
+    border-bottom: 1px solid rgba(26, 25, 22, 0.08);
+    background: var(--color-ivory);
+  }
+
+  .services-header {
+    margin-bottom: 56px;
+  }
+
+  .col-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+    margin-bottom: 32px;
+  }
+
+  .services h2 {
+    font-family: var(--font-display);
+    font-size: 38px;
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--color-obsidian);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(26, 25, 22, 0.08);
+  }
+
+  .service-card {
+    background: var(--color-ivory);
+    padding: 48px 40px;
+  }
+
+  .service-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--color-mint);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .service-icon span {
+    color: var(--color-grove);
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .service-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--color-obsidian);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .service-desc {
+    font-size: 15px;
+    color: var(--color-stone);
+    line-height: 1.7;
+  }
+
+  /* Tablet: 768px – 1024px */
+  @media (max-width: 1024px) {
+    .services {
+      padding: 72px 40px;
+    }
+    .services-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /* Mobile: até 767px */
+  @media (max-width: 767px) {
+    .services {
+      padding: 56px 24px;
+    }
+    .services h2 {
+      font-size: 28px;
+    }
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+    .service-card {
+      padding: 36px 24px;
+    }
+    .services-header {
+      margin-bottom: 36px;
+    }
+  }
+</style>

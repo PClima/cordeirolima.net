@@ -1,0 +1,134 @@
+---
+// SocialProof.astro
+import { Image } from 'astro:assets';
+import ibmLogo from '../assets/IBM_Logo.png';
+import boschLogo from '../assets/Bosch_Logo.png';
+import maxionLogo from '../assets/Maxion_Logo.png';
+---
+<section class="social-proof">
+  <span class="sp-label">Experiência em</span>
+  <div class="sp-divider"></div>
+  <div class="sp-carousel" aria-hidden="true">
+    <div class="sp-track">
+      <span class="sp-logo"><Image src={ibmLogo} alt="IBM" height={56} loading="lazy" /></span>
+      <span class="sp-logo"><Image src={boschLogo} alt="Bosch" height={56} loading="lazy" /></span>
+      <span class="sp-logo"><Image src={maxionLogo} alt="Greenbrier Maxion" height={56} loading="lazy" /></span>
+      <span class="sp-logo text-logo">Stako</span>
+      <!-- Duplicate tracks for seamless infinite marquee loop -->
+      <span class="sp-logo"><Image src={ibmLogo} alt="" height={56} loading="lazy" /></span>
+      <span class="sp-logo"><Image src={boschLogo} alt="" height={56} loading="lazy" /></span>
+      <span class="sp-logo"><Image src={maxionLogo} alt="" height={56} loading="lazy" /></span>
+      <span class="sp-logo text-logo" aria-hidden="true">Stako</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .social-proof {
+    padding: 48px 80px;
+    border-top: 1px solid rgba(26, 25, 22, 0.08);
+    border-bottom: 1px solid rgba(26, 25, 22, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--color-ivory);
+  }
+
+  .sp-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+    white-space: nowrap;
+    margin-right: 24px;
+  }
+
+  .sp-divider {
+    width: 1px;
+    height: 20px;
+    background: rgba(26, 25, 22, 0.15);
+    margin-right: 8px;
+  }
+
+  .sp-carousel {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+  }
+
+  .sp-track {
+    display: flex;
+    align-items: center;
+    gap: 72px;
+    animation: marquee 18s linear infinite;
+    white-space: nowrap;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .sp-logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .sp-logo img {
+    height: 28px;
+    width: auto;
+    opacity: 0.3;
+    filter: grayscale(100%);
+    display: block;
+    transition: opacity 0.2s ease;
+  }
+
+  .sp-logo img:hover {
+    opacity: 0.6;
+  }
+
+  .text-logo {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(26, 25, 22, 0.3);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+
+  .text-logo:hover {
+    color: rgba(26, 25, 22, 0.6);
+  }
+
+  /* Tablet: 768px – 1024px */
+  @media (max-width: 1024px) {
+    .social-proof {
+      padding: 40px;
+    }
+  }
+
+  /* Mobile: até 767px */
+  @media (max-width: 767px) {
+    .social-proof {
+      padding: 32px 24px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .sp-label {
+      margin-right: 0;
+    }
+    .sp-divider {
+      display: none;
+    }
+    .sp-carousel {
+      width: 100%;
+    }
+  }
+</style>

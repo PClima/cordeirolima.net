@@ -1,0 +1,184 @@
+---
+// Projects.astro
+---
+<section class="projects" id="projetos">
+  <div class="projects-header">
+    <div>
+      <p class="col-label">Portfolio</p>
+      <h2>Projetos recentes</h2>
+    </div>
+    <a href="/projetos" class="projects-link">Ver todos os projetos</a>
+  </div>
+
+  <div class="project-card">
+    <div>
+      <span class="project-tag">Ativo</span>
+      <p class="project-name">FinPlan</p>
+      <p class="project-meta">Finanças pessoais</p>
+    </div>
+    <p class="project-desc">
+      Aplicativo de gestão financeira pessoal com categorização automática, metas e relatórios de fluxo de caixa. Construído para simplificar a relação com o dinheiro no dia a dia.
+    </p>
+    <div class="project-cta">
+      <a href="/projetos/finplan" class="btn-ghost">Ver projeto →</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects {
+    padding: 96px 80px;
+    border-bottom: 1px solid rgba(26, 25, 22, 0.08);
+    background: var(--color-ivory);
+  }
+
+  .projects-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 56px;
+  }
+
+  .col-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+    margin-bottom: 32px;
+  }
+
+  .projects h2 {
+    font-family: var(--font-display);
+    font-size: 38px;
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--color-obsidian);
+  }
+
+  .projects-link {
+    font-size: 14px;
+    color: var(--color-stone);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(138, 127, 110, 0.4);
+    padding-bottom: 2px;
+    font-family: var(--font-body);
+    transition: color 0.2s ease, border-bottom-color 0.2s ease;
+  }
+
+  .projects-link:hover {
+    color: var(--color-obsidian);
+    border-bottom-color: var(--color-obsidian);
+  }
+
+  .project-card {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    padding: 40px 0;
+    border-top: 1px solid rgba(26, 25, 22, 0.08);
+    gap: 48px;
+  }
+
+  .project-card:last-child {
+    border-bottom: 1px solid rgba(26, 25, 22, 0.08);
+  }
+
+  .project-tag {
+    display: inline-block;
+    background: var(--color-mint);
+    color: var(--color-grove);
+    font-size: 11px;
+    font-family: var(--font-mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    margin-bottom: 16px;
+  }
+
+  .project-name {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--color-obsidian);
+    margin-bottom: 8px;
+  }
+
+  .project-meta {
+    font-size: 13px;
+    color: var(--color-stone);
+    font-family: var(--font-mono);
+  }
+
+  .project-desc {
+    font-size: 15px;
+    color: var(--color-stone);
+    line-height: 1.7;
+    font-family: var(--font-body);
+  }
+
+  .project-cta {
+    text-align: right;
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--color-obsidian);
+    padding: 12px 24px;
+    font-size: 14px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    border: 1px solid rgba(26, 25, 22, 0.2);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .btn-ghost:hover {
+    background: var(--color-obsidian);
+    color: var(--color-ivory);
+    border-color: var(--color-obsidian);
+  }
+
+  /* Tablet: 768px – 1024px */
+  @media (max-width: 1024px) {
+    .projects {
+      padding: 72px 40px;
+    }
+    .projects h2 {
+      font-size: 30px;
+    }
+    .project-card {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .project-cta {
+      text-align: left;
+    }
+  }
+
+  /* Mobile: até 767px */
+  @media (max-width: 767px) {
+    .projects {
+      padding: 56px 24px;
+    }
+    .projects h2 {
+      font-size: 28px;
+    }
+    .projects-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .project-card {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 32px 0;
+    }
+    .project-name {
+      font-size: 22px;
+    }
+  }
+</style>

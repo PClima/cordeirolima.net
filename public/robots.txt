@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://cordeirolima.net/sitemap-index.xml

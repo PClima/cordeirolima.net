@@ -1,0 +1,93 @@
+---
+// CtaFinal.astro
+---
+<section class="cta-final" id="falar-projeto">
+  <h2>Pronto para conectar seu negócio?</h2>
+  <div class="cta-final-right">
+    <p>
+      Me conta como seus processos funcionam hoje. Se fizer sentido trabalharmos juntos, definimos por onde começar.
+    </p>
+    <a href="/contato" class="btn-cta">Falar sobre seu projeto</a>
+  </div>
+</section>
+
+<style>
+  .cta-final {
+    background: var(--color-obsidian);
+    padding: 120px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .cta-final h2 {
+    font-family: var(--font-display);
+    font-size: 46px;
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--color-ivory);
+    letter-spacing: -0.02em;
+  }
+
+  .cta-final-right {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .cta-final p {
+    font-size: 16px;
+    color: rgba(247, 245, 240, 0.55);
+    line-height: 1.75;
+    font-family: var(--font-body);
+  }
+
+  .btn-cta {
+    display: inline-block;
+    background: var(--color-grove);
+    color: var(--color-mint);
+    padding: 18px 40px;
+    font-size: 16px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    align-self: flex-start;
+    transition: opacity 0.2s ease;
+  }
+
+  .btn-cta:hover {
+    opacity: 0.9;
+  }
+
+  /* Tablet: 768px – 1024px */
+  @media (max-width: 1024px) {
+    .cta-final {
+      padding: 80px 40px;
+      gap: 48px;
+    }
+    .cta-final h2 {
+      font-size: 36px;
+    }
+  }
+
+  /* Mobile: até 767px */
+  @media (max-width: 767px) {
+    .cta-final {
+      grid-template-columns: 1fr;
+      padding: 64px 24px;
+      gap: 32px;
+    }
+    .cta-final h2 {
+      font-size: 30px;
+    }
+    .btn-cta {
+      width: 100%;
+      text-align: center;
+      align-self: stretch;
+      box-sizing: border-box;
+    }
+  }
+</style>

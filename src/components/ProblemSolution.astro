@@ -1,0 +1,127 @@
+---
+// ProblemSolution.astro
+---
+<section class="problem-solution">
+  <div class="problem-col">
+    <p class="col-label">O problema</p>
+    <h2>Cada área trabalha com sua própria planilha.</h2>
+    <p>
+      Financeiro, comercial e operacional funcionam de forma isolada. Quando algo muda em um lugar, o resto não sabe. O resultado: retrabalho, erros e dependência de pessoas específicas para manter tudo funcionando.
+    </p>
+  </div>
+  <div class="solution-col">
+    <p class="col-label">A solução</p>
+    <h2>Um sistema que conecta o que você já tem.</h2>
+    <p>
+      Construo integrações que eliminam o trabalho manual e centralizam a informação. Você ganha visibilidade, reduz risco operacional e para de depender de quem sabe onde está cada coisa.
+    </p>
+  </div>
+</section>
+
+<style>
+  .problem-solution {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 80px;
+    border-bottom: 1px solid rgba(26, 25, 22, 0.08);
+    background: var(--color-ivory);
+    overflow: hidden;
+  }
+
+  .problem-col {
+    padding: 96px 64px 96px 0;
+    border-right: 1px solid rgba(26, 25, 22, 0.08);
+  }
+
+  .solution-col {
+    padding: 96px 0 96px 64px;
+    background: var(--color-obsidian);
+    margin: 0 -80px 0 0;
+    padding-right: 80px;
+  }
+
+  .col-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+    margin-bottom: 32px;
+  }
+
+  .solution-col .col-label {
+    color: rgba(247, 245, 240, 0.4);
+  }
+
+  .problem-col h2 {
+    font-family: var(--font-display);
+    font-size: 34px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--color-obsidian);
+    margin-bottom: 24px;
+  }
+
+  .solution-col h2 {
+    font-family: var(--font-display);
+    font-size: 34px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--color-ivory);
+    margin-bottom: 24px;
+  }
+
+  .problem-col p {
+    color: var(--color-stone);
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  .solution-col p {
+    color: rgba(247, 245, 240, 0.65);
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  /* Tablet: 768px – 1024px */
+  @media (max-width: 1024px) {
+    .problem-solution {
+      padding: 0 40px;
+    }
+    .problem-col {
+      padding: 72px 48px 72px 0;
+    }
+    .solution-col {
+      padding: 72px 0 72px 48px;
+      padding-right: 40px;
+      margin-right: -40px;
+    }
+    .problem-col h2,
+    .solution-col h2 {
+      font-size: 26px;
+    }
+  }
+
+  /* Mobile: até 767px */
+  @media (max-width: 767px) {
+    .problem-solution {
+      grid-template-columns: 1fr;
+      padding: 0 24px;
+    }
+    .problem-col {
+      padding: 56px 0;
+      border-right: none;
+      border-bottom: 1px solid rgba(26, 25, 22, 0.08);
+    }
+    .solution-col {
+      padding: 56px 24px;
+      margin: 0 -24px;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .problem-col h2,
+    .solution-col h2 {
+      font-size: 24px;
+    }
+  }
+</style>
