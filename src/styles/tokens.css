@@ -1,4 +1,10 @@
 @import "tailwindcss";
+@import "@fontsource/playfair-display/400.css";
+@import "@fontsource/playfair-display/500.css";
+@import "@fontsource/playfair-display/400-italic.css";
+@import "@fontsource/dm-sans/400.css";
+@import "@fontsource/dm-sans/500.css";
+@import "@fontsource/dm-mono/400.css";
 
 @theme {
   /* Cores */
@@ -6,7 +12,7 @@
   --color-ivory: #F7F5F0;
   --color-grove: #3B6D11;
   --color-mint: #EAF3DE;
-  --color-stone: #8A7F6E;
+  --color-stone: #776D5F;
   --color-charcoal: #2C2C2A;
 
   /* Tipografia — famílias */
