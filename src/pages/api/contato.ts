@@ -127,6 +127,29 @@ export const POST: APIRoute = async ({ request }) => {
         console.error('Confirmation email failed (non-blocking):', confirmErr);
       }
 
+      // Create/update CRM contact — failure is non-blocking
+      try {
+        await fetch('https://api.brevo.com/v3/contacts', {
+          method: 'POST',
+          headers: {
+            'api-key': apiKey,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: emailRaw,
+            updateEnabled: true,
+            attributes: {
+              FIRSTNAME: nomeRaw,
+              ...(telefoneRaw ? { SMS: telefoneRaw } : {}),
+            },
+            listIds: [7],
+            tags: [servicoRaw],
+          }),
+        });
+      } catch (crmErr) {
+        console.error('CRM contact upsert failed (non-blocking):', crmErr);
+      }
+
       return new Response(JSON.stringify({ success: true }), {
         status: 200,
         headers: { 'Content-Type': 'application/json' },
