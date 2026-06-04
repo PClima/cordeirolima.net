@@ -1,12 +1,45 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import ContactInfo from '../components/ContactInfo.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="Contato | Cordeiro Lima" description="Entre em contato com Cordeiro Lima">
+<Layout
+  title="Contato — Pedro Cordeiro Lima"
+  description="Entre em contato com Pedro Cordeiro Lima para discutir seu projeto de integração de sistemas, automação de processos ou desenvolvimento de site."
+  ogDescription="Entre em contato para discutir seu projeto. Sem compromisso — só uma conversa."
+>
+  <Nav />
   <main>
-    <section>
-      <h1>Contato</h1>
-      <!-- Formulário de contato virá aqui -->
-    </section>
+    <div class="page-container">
+      <ContactInfo />
+      <ContactForm />
+    </div>
   </main>
+  <Footer />
 </Layout>
+
+<style>
+  .page-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100svh - 85px); /* Matches 100vh minus Nav height */
+    background: var(--color-ivory);
+  }
+
+  /* Tablet: 768px – 1024px */
+  @media (max-width: 1024px) {
+    .page-container {
+      min-height: auto;
+    }
+  }
+
+  /* Mobile: até 767px */
+  @media (max-width: 767px) {
+    .page-container {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,150 @@
+---
+// ContactInfo.astro
+---
+<div class="contact-info">
+  <div class="contact-info-top">
+    <span class="col-label">Contato</span>
+    <h1>Vamos conversar sobre seu projeto.</h1>
+    <p>Preencha o formulário e me conta o que você tem em mente. Sem compromisso — só uma conversa para entender se faz sentido trabalharmos juntos.</p>
+
+    <div class="contact-details">
+      <div class="contact-detail">
+        <span class="detail-label">E-mail</span>
+        <a href="mailto:pedro@cordeirolima.net" class="detail-value">pedro@cordeirolima.net</a>
+      </div>
+      <div class="contact-detail">
+        <span class="detail-label">Localização</span>
+        <span class="detail-value">Hortolândia, SP — atendo remotamente</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-info-bottom">
+    <div class="availability">
+      <div class="availability-dot"></div>
+      <span>Disponível para novos projetos</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .contact-info {
+    padding: 96px 80px;
+    border-right: 1px solid rgba(26, 25, 22, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+
+  .col-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+    margin-bottom: 32px;
+    display: block;
+  }
+
+  .contact-info h1 {
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    color: var(--color-obsidian);
+  }
+
+  .contact-info p {
+    font-size: 16px;
+    color: var(--color-stone);
+    line-height: 1.75;
+    max-width: 380px;
+    margin-bottom: 64px;
+    font-family: var(--font-body);
+  }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .contact-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .detail-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-stone);
+  }
+
+  .detail-value {
+    font-size: 15px;
+    color: var(--color-obsidian);
+    text-decoration: none;
+    font-family: var(--font-body);
+    transition: color 0.2s ease;
+  }
+
+  a.detail-value:hover {
+    color: var(--color-stone);
+  }
+
+  .contact-info-bottom {
+    margin-top: 64px;
+  }
+
+  .availability {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .availability-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-grove);
+    flex-shrink: 0;
+  }
+
+  .availability span {
+    font-size: 14px;
+    color: var(--color-stone);
+    font-family: var(--font-body);
+  }
+
+  /* Tablet: 768px – 1024px */
+  @media (max-width: 1024px) {
+    .contact-info {
+      padding: 72px 40px;
+    }
+    .contact-info h1 {
+      font-size: 38px;
+    }
+  }
+
+  /* Mobile: até 767px */
+  @media (max-width: 767px) {
+    .contact-info {
+      padding: 56px 24px;
+      border-right: none;
+      border-bottom: 1px solid rgba(26, 25, 22, 0.08);
+    }
+    .contact-info h1 {
+      font-size: 32px;
+    }
+    .contact-info p {
+      margin-bottom: 40px;
+      max-width: 100%;
+    }
+  }
+</style>

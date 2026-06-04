@@ -4,12 +4,16 @@ import "../styles/tokens.css";
 interface Props {
   title?: string;
   description?: string;
+  ogDescription?: string;
 }
 
 const {
   title = "Pedro Cordeiro Lima — Desenvolvedor & Integrador de Sistemas",
   description = "Trabalho com pequenas empresas para conectar sistemas, eliminar trabalho manual e construir presença digital — sem depender de uma área de TI interna.",
+  ogDescription,
 } = Astro.props;
+
+const resolvedOgDescription = ogDescription ?? description;
 
 const canonicalUrl = new URL(Astro.url.pathname, "https://cordeirolima.net")
   .href;
@@ -75,14 +79,14 @@ const jsonLd = {
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={resolvedOgDescription} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:locale" content="pt_BR" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:description" content={resolvedOgDescription} />
     <meta name="twitter:image" content={ogImage} />
 
     <!-- Structured Data -->
