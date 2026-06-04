@@ -104,6 +104,29 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     if (res.ok) {
+      // Confirmation email to client — failure is non-blocking
+      try {
+        await fetch('https://api.brevo.com/v3/smtp/email', {
+          method: 'POST',
+          headers: {
+            'api-key': apiKey,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            to: [{ email: emailRaw, name: nomeRaw }],
+            replyTo: { email: 'pedro@cordeirolima.net', name: 'Pedro Cordeiro Lima' },
+            sender: { name: 'Pedro Cordeiro Lima', email: 'pedro@cordeirolima.net' },
+            templateId: 3,
+            params: {
+              nome: nomeRaw,
+              servico: servicoRaw,
+            },
+          }),
+        });
+      } catch (confirmErr) {
+        console.error('Confirmation email failed (non-blocking):', confirmErr);
+      }
+
       return new Response(JSON.stringify({ success: true }), {
         status: 200,
         headers: { 'Content-Type': 'application/json' },
