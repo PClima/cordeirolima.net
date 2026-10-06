@@ -1,0 +1,117 @@
+---
+import "@fontsource/instrument-serif/400.css";
+import "@fontsource/instrument-serif/400-italic.css";
+import "@fontsource/hanken-grotesk/400.css";
+import "@fontsource/hanken-grotesk/500.css";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Página não encontrada — Pedro Cordeiro Lima"
+  description="A página que você procura não existe ou foi movida."
+  noindex
+>
+  <main class="nf">
+    <div class="nf-inner">
+      <div class="brand">
+        <svg width="24" height="24" viewBox="0 0 52 52" aria-hidden="true">
+          <circle cx="15" cy="26" r="6" fill="#1A1916"></circle>
+          <circle cx="37" cy="26" r="6" fill="#3B6D11"></circle>
+          <path d="M21 26 Q26 13 31 26" stroke="#1A1916" stroke-width="2" fill="none" stroke-linecap="round"></path>
+          <path d="M21 26 Q26 39 31 26" stroke="#3B6D11" stroke-width="2" fill="none" stroke-linecap="round"></path>
+        </svg>
+        <span>Pedro Lima</span>
+      </div>
+
+      <p class="code">404</p>
+      <h1>Essa página não existe.</h1>
+      <p class="sub">
+        O endereço pode ter mudado ou nunca ter existido. Volte para o início ou
+        me chame direto.
+      </p>
+
+      <div class="links">
+        <a href="/" class="link">Voltar para o início</a>
+        <a href="mailto:pedro@cordeirolima.net" class="link">pedro@cordeirolima.net</a>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style is:global>
+  body { background: #f5f1e8 !important; }
+  ::selection { background: #f3dfd3; }
+</style>
+
+<style>
+  .nf {
+    --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding: 48px 24px;
+    background: #f5f1e8;
+    color: #1c1a17;
+    font-family: "Hanken Grotesk", sans-serif;
+    box-sizing: border-box;
+  }
+  .nf-inner {
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    position: relative;
+    padding-left: 24px;
+    border-left: 1px solid #e4dcc9;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 64px;
+    font-family: "Instrument Serif", serif;
+    font-size: 26px;
+  }
+  .code {
+    font-family: "Instrument Serif", serif;
+    font-style: italic;
+    font-size: 18px;
+    color: #8a7f6e;
+    margin: 0 0 6px;
+  }
+  h1 {
+    font-family: "Instrument Serif", serif;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .sub {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #4a453c;
+    margin: 20px 0 36px;
+    max-width: 44ch;
+  }
+  .links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  .link {
+    font-family: "Instrument Serif", serif;
+    font-size: 24px;
+    color: #c1502e;
+    text-decoration: none;
+    border-bottom: 1px solid #c1502e;
+    padding-bottom: 3px;
+    transition: padding-left 220ms var(--ease), color 220ms var(--ease);
+  }
+  .link:hover { color: #8c3a20; padding-left: 6px; }
+
+  @media (max-width: 860px) {
+    h1 { font-size: 34px; }
+    .brand { margin-bottom: 48px; }
+  }
+</style>

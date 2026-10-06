@@ -5,12 +5,14 @@ interface Props {
   title?: string;
   description?: string;
   ogDescription?: string;
+  noindex?: boolean;
 }
 
 const {
-  title = "Pedro Cordeiro Lima — Desenvolvedor & Integrador de Sistemas",
-  description = "Trabalho com pequenas empresas para conectar sistemas, eliminar trabalho manual e construir presença digital — sem depender de uma área de TI interna.",
+  title = "Pedro Cordeiro Lima — Desenvolvedor e Integrador de Sistemas em Hortolândia e Campinas",
+  description = "Desenvolvedor em Hortolândia, SP. Integro sistemas e automatizo processos para pequenas e médias empresas de Campinas e região — sem você precisar de uma equipe de TI.",
   ogDescription,
+  noindex = false,
 } = Astro.props;
 
 const resolvedOgDescription = ogDescription ?? description;
@@ -19,27 +21,75 @@ const canonicalUrl = new URL(Astro.url.pathname, "https://cordeirolima.net")
   .href;
 const ogImage = "https://cordeirolima.net/og-image.jpg";
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Pedro Cordeiro Lima",
-  url: "https://cordeirolima.net",
-  email: "pedro@cordeirolima.net",
-  jobTitle: "Desenvolvedor & Integrador de Sistemas",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Hortolândia",
-    addressRegion: "SP",
-    addressCountry: "BR",
+const siteUrl = "https://cordeirolima.net";
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${siteUrl}/#website`,
+    url: siteUrl,
+    name: "Pedro Cordeiro Lima",
+    inLanguage: "pt-BR",
   },
-  sameAs: ["https://linkedin.com/in/pedro-cordeiro"],
-  knowsAbout: [
-    "Integração de sistemas",
-    "Automação de processos",
-    "Desenvolvimento de sites",
-    "Backend development",
-  ],
-};
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${siteUrl}/#pedro`,
+    name: "Pedro Cordeiro Lima",
+    url: siteUrl,
+    email: "pedro@cordeirolima.net",
+    telephone: "+5519993748304",
+    image: `${siteUrl}/og-image.jpg`,
+    jobTitle: "Desenvolvedor & Integrador de Sistemas",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Hortolândia",
+      addressRegion: "SP",
+      addressCountry: "BR",
+    },
+    sameAs: [
+      "https://linkedin.com/in/pedro-cordeiro",
+      "https://github.com/PClima",
+    ],
+    knowsAbout: [
+      "Integração de sistemas",
+      "Automação de processos",
+      "Desenvolvimento de sites",
+      "Desenvolvimento backend",
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": `${siteUrl}/#service`,
+    name: "Pedro Cordeiro Lima — Integração de Sistemas e Automação",
+    url: siteUrl,
+    image: `${siteUrl}/og-image.jpg`,
+    email: "pedro@cordeirolima.net",
+    telephone: "+5519993748304",
+    description:
+      "Integração de sistemas, automação de processos e desenvolvimento de sistemas sob medida para pequenas e médias empresas.",
+    founder: { "@id": `${siteUrl}/#pedro` },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Hortolândia",
+      addressRegion: "SP",
+      addressCountry: "BR",
+    },
+    areaServed: [
+      { "@type": "City", name: "Hortolândia" },
+      { "@type": "City", name: "Campinas" },
+      { "@type": "City", name: "Sumaré" },
+      { "@type": "City", name: "Indaiatuba" },
+      { "@type": "AdministrativeArea", name: "Região Metropolitana de Campinas" },
+    ],
+    sameAs: [
+      "https://linkedin.com/in/pedro-cordeiro",
+      "https://github.com/PClima",
+    ],
+  },
+];
 ---
 
 <!doctype html>
@@ -59,7 +109,16 @@ const jsonLd = {
     <!-- SEO básico -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="index, follow" />
+    <meta
+      name="robots"
+      content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"}
+    />
+    <meta name="author" content="Pedro Cordeiro Lima" />
+    <meta name="theme-color" content="#F5F1E8" />
+    <meta name="geo.region" content="BR-SP" />
+    <meta name="geo.placename" content="Hortolândia" />
+    <link rel="alternate" hreflang="pt-BR" href={canonicalUrl} />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
     <link rel="canonical" href={canonicalUrl} />
 
     <!-- Open Graph -->
@@ -67,7 +126,11 @@ const jsonLd = {
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={resolvedOgDescription} />
+    <meta property="og:site_name" content="Pedro Cordeiro Lima" />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Pedro Cordeiro Lima — Desenvolvedor e Integrador de Sistemas" />
     <meta property="og:locale" content="pt_BR" />
 
     <!-- Twitter Card -->
@@ -75,6 +138,7 @@ const jsonLd = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={resolvedOgDescription} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="Pedro Cordeiro Lima — Desenvolvedor e Integrador de Sistemas" />
 
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

@@ -7,7 +7,12 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://cordeirolima.net',
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      // páginas de projeto ainda são placeholders (noindex) — fora do sitemap
+      filter: (page) => !page.includes('/projetos'),
+    }),
+  ],
   adapter: netlify(),
   vite: {
     plugins: [tailwindcss()],

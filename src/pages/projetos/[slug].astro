@@ -10,7 +10,7 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 ---
 
-<Layout title={`Projeto - ${slug} | Cordeiro Lima`} description={`Detalhes do projeto ${slug}`}>
+<Layout noindex title={`Projeto - ${slug} | Cordeiro Lima`} description={`Detalhes do projeto ${slug}`}>
   <main>
     <article>
       <h1>Projeto: {slug}</h1>
