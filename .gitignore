@@ -30,3 +30,6 @@ mockup-contato.html
 
 # Local Netlify folder
 .netlify
+
+# Referências do redesign (não versionar)
+docs/redesign/
