@@ -14,6 +14,10 @@ export default defineConfig({
     }),
   ],
   adapter: netlify(),
+  build: {
+    // CSS total é pequeno: inline elimina as requisições que bloqueiam a renderização
+    inlineStylesheets: 'always',
+  },
   vite: {
     plugins: [tailwindcss()],
   },

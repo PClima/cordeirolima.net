@@ -161,6 +161,8 @@ const projects = [
                 alt="Pedro Lima"
                 width={720}
                 height={1080}
+                widths={[240, 420, 480, 720, 960]}
+                sizes="(max-width: 860px) 240px, 420px"
                 quality={80}
                 loading="eager"
                 fetchpriority="high"
@@ -194,7 +196,8 @@ const projects = [
                 <Image
                   src={e.logo}
                   alt={e.alt}
-                  height={60}
+                  width={100}
+                  densities={[1, 2]}
                   quality={85}
                   class="exp-logo"
                 />
@@ -225,6 +228,8 @@ const projects = [
                   src={p.img}
                   alt={p.alt}
                   width={900}
+                  widths={[480, 720, 900, 1400]}
+                  sizes="(max-width: 860px) 100vw, 560px"
                   quality={80}
                   loading="lazy"
                 />
