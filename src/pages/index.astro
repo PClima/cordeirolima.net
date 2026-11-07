@@ -9,8 +9,7 @@ import profileImg from "../assets/hero.jpg";
 import ibmLogo from "../assets/logo-ibm.png";
 import boschLogo from "../assets/logo-bosch.png";
 import maxionLogo from "../assets/logo-maxion.png";
-import finplanImg from "../assets/project-finplan.png";
-import laudosImg from "../assets/project-laudos.png";
+import laudosImg from "../assets/laudos/painel-prod.png";
 
 const experience = [
   {
@@ -33,14 +32,7 @@ const experience = [
 const projects = [
   {
     n: "01",
-    name: "Finplan",
-    img: finplanImg,
-    alt: "Dashboard do Finplan",
-    desc: "Dashboard financeiro para controle familiar, com acompanhamento das finanças e gráficos para análise.",
-    stack: ["PostgreSQL", "Node.js", "React", "Tailwind"],
-  },
-  {
-    n: "02",
+    href: "/projetos/portal-de-laudos",
     name: "Portal de Laudos",
     img: laudosImg,
     alt: "Tela do Portal de Laudos",
@@ -176,8 +168,8 @@ const projects = [
       <section id="sobre" class="reveal about">
         <h2>Sobre</h2>
         <p>
-          Full-stack, com passagem por empresas como IBM e Bosch em projetos de
-          sistemas críticos e regulatórios. Aplico essa bagagem em projetos fora
+          Full-stack, com experiência na IBM e hoje na Bosch, em projetos de
+          sistemas críticos, regulatórios e de IA generativa. Aplico essa bagagem em projetos fora
           do universo corporativo — sem squad gigante, direto ao ponto, pra
           pequena empresa.
         </p>
@@ -222,6 +214,10 @@ const projects = [
                     <span>{s}</span>
                   ))}
                 </div>
+                <a href={p.href} class="proj-link">
+                  <span />
+                  Ver projeto
+                </a>
               </div>
               <div class="proj-img">
                 <Image
@@ -605,15 +601,46 @@ const projects = [
   }
   .proj-row {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: 0.9fr 1.1fr;
     gap: 64px;
     align-items: center;
     padding: 20px;
     margin: -20px -20px 76px;
     border-radius: 3px;
+    position: relative;
   }
   .proj-row:last-child {
     margin-bottom: -20px;
+  }
+  .page .proj-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 24px;
+    font-size: 15px;
+    color: #1c1a17;
+    transition: color 220ms var(--ease);
+  }
+  .proj-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 3px;
+  }
+  .proj-link:focus-visible::after {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .proj-row:hover .proj-link {
+    color: var(--accent);
+  }
+  .proj-link span {
+    width: 22px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .page .proj-link:hover {
+    color: var(--accent);
   }
   .proj-row:hover {
     background: #efe9da;
@@ -634,9 +661,6 @@ const projects = [
   }
   .proj-row:hover .proj-img {
     border-color: var(--accent);
-  }
-  .proj-row:not(.flip) .proj-img {
-    order: -1;
   }
   .proj-n {
     font-family: "Instrument Serif", serif;

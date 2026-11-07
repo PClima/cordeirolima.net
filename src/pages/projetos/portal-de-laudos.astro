@@ -1,0 +1,674 @@
+---
+import "@fontsource/instrument-serif/400.css";
+import "@fontsource/instrument-serif/400-italic.css";
+import "@fontsource/hanken-grotesk/400.css";
+import "@fontsource/hanken-grotesk/500.css";
+import { Image } from "astro:assets";
+import Layout from "../../layouts/Layout.astro";
+import painel from "../../assets/laudos/painel-prod.png";
+import revisao from "../../assets/laudos/revisao-prod.png";
+import celular from "../../assets/laudos/celular-prod.png";
+import detalhe from "../../assets/laudos/detalhe-prod.png";
+
+const meta = [
+  ["Papel", "Desenvolvimento completo, do banco ao deploy"],
+  ["Período", "Jul — Out 2026 · manutenção mensal desde nov"],
+  ["Cliente", "Crislei Arquitetura"],
+  ["Stack", "Next.js, Postgres, Clerk, SharePoint, Chromium PDF"],
+];
+
+const steps = [
+  ["01", "Recebido", "A unidade solicita o laudo"],
+  ["02", "Preenchimento", "A unidade responde o checklist e envia fotos"],
+  ["03", "Revisão técnica", "A arquiteta aceita ou devolve cada bloco"],
+  ["03a", "Em correção", "Só os blocos devolvidos voltam à unidade", true],
+  ["04", "Confecção", "RRT registrado, arquiteta completa o documento e emite"],
+  ["05", "Finalizado", "A unidade baixa o PDF, válido por 12 meses"],
+];
+
+const solution = [
+  [
+    "Isolamento no próprio banco",
+    "Cada registro carrega a rede, a área e a unidade a que pertence, e o banco recusa qualquer leitura fora desse escopo. Não existe chave-mestra: nem a conta de administrador passa por cima da regra. Se um erro escapar no código, o banco ainda segura.",
+  ],
+  [
+    "Permissões por capacidade",
+    "Em vez de telas fixas por cargo, cada perfil recebe ações permitidas — revisar, gerir unidade, convidar pessoa. Uma pessoa pode acumular perfis, e um perfil novo não exige reescrever o sistema.",
+  ],
+  [
+    "Unidade entra por link",
+    "A unidade não cria senha: recebe um link por e-mail, de uso único e com validade curta. Isso evita milhares de contas esquecidas e mantém o acesso simples para quem preenche uma vez por ano.",
+  ],
+  [
+    "Revisão por bloco",
+    "A arquiteta revisa o checklist por área da vistoria e pode devolver até uma pergunta isolada. Só o que foi devolvido volta para a unidade, com o motivo escrito. Os laudos da mesma vistoria andam juntos.",
+  ],
+  [
+    "Do checklist ao PDF",
+    "O checklist aprovado preenche o modelo do laudo. A arquiteta completa os campos, escolhe fotos, vê a prévia com marca d'água e emite. O PDF sai numerado, com assinatura e RRT anexada; retificações viram revisões numeradas. Campos já escritos num laudo anterior chegam preenchidos.",
+  ],
+];
+
+const nums = [
+  ["3.150", "testes automatizados"],
+  ["143", "migrações de banco, cada uma com prova própria"],
+  ["36", "ajustes do teste com o cliente, entregues em 3 dias"],
+  ["0", "achados críticos ou altos em 4 rodadas de segurança"],
+];
+---
+
+<Layout
+  title="Portal de Laudos | Pedro Lima"
+  description="Como laudos técnicos saíram do WhatsApp e ganharam um caminho próprio, do pedido da unidade ao PDF emitido. Projeto entregue e em uso pelo cliente desde outubro de 2026."
+>
+  <div class="cs">
+    <div class="glow" id="glow" aria-hidden="true"></div>
+
+    <header class="cs-bar">
+      <a href="/" class="cs-brand">
+        <svg width="22" height="22" viewBox="0 0 52 52" aria-hidden="true">
+          <circle cx="15" cy="26" r="6" fill="#1A1916"></circle>
+          <circle cx="37" cy="26" r="6" fill="#3B6D11"></circle>
+          <path d="M21 26 Q26 13 31 26" stroke="#1A1916" stroke-width="2" fill="none" stroke-linecap="round"></path>
+          <path d="M21 26 Q26 39 31 26" stroke="#3B6D11" stroke-width="2" fill="none" stroke-linecap="round"></path>
+        </svg>
+        <span>Pedro Lima</span>
+      </a>
+      <a href="/#projetos" class="cs-all"><span></span>Todos os projetos</a>
+    </header>
+
+    <main class="cs-wrap">
+      <section class="cs-hero">
+        <div class="eyebrow">01 — Projeto em produção</div>
+        <h1>Portal de Laudos</h1>
+        <p class="cs-sub">
+          Laudos técnicos que saíram do WhatsApp e ganharam um caminho próprio,
+          do pedido da unidade ao PDF emitido. Em produção desde outubro de
+          2026.
+        </p>
+      </section>
+
+      <div class="hero-shot">
+        <div class="shot" style="aspect-ratio:1440/680;">
+          <Image src={painel} alt="Painel de laudos em produção" widths={[720, 1120, 1600]} sizes="(max-width: 860px) 100vw, 1008px" quality={80} loading="eager" fetchpriority="high" />
+        </div>
+        <div class="corner"></div>
+      </div>
+
+      <div class="meta">
+        {meta.map(([k, v]) => (
+          <div><div class="meta-k">{k}</div><div class="meta-v">{v}</div></div>
+        ))}
+      </div>
+
+      <section class="reveal block narrow">
+        <h2>Contexto</h2>
+        <p>Todo o atendimento acontecia por WhatsApp, com o checklist da vistoria preenchido numa ferramenta externa cobrada por usuário. Com centenas de unidades, esse modelo não fechava a conta e não dava visibilidade: ninguém sabia, sem perguntar, em que pé estava cada laudo.</p>
+        <p>A rede pediu acesso direto. E com uma condição: unidades próprias e franqueadas são duas áreas separadas, e uma não pode enxergar os dados da outra.</p>
+      </section>
+
+      <section class="reveal block challenge">
+        <h2>Desafio</h2>
+        <p class="quote">Como dar acesso direto a centenas de unidades, na mesma base de dados, sem que nenhuma enxergue o que pertence à outra?</p>
+        <p class="after">Vazar dados entre unidades concorrentes era o maior risco do projeto. Por isso o isolamento veio primeiro, antes de qualquer tela.</p>
+      </section>
+
+      <section class="reveal block path">
+        <h2>O caminho do laudo</h2>
+        <p class="lead">Mapeei com o cliente cada etapa, do pedido até o vencimento. O sistema só deixa avançar nessa ordem: nenhum laudo chega a finalizado sem ter passado pela revisão.</p>
+        <ol class="steps">
+          {steps.map(([n, t, d, hl]) => (
+            <li class:list={{ hl }}>
+              <div class="step-n">{n}</div>
+              <div class="step-t">{t}</div>
+              <div class="step-d">{d}</div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section class="reveal block solution">
+        <h2>Solução</h2>
+        <div class="sol-list">
+          {solution.map(([t, d]) => (
+            <div class="sol-row"><h3>{t}</h3><p>{d}</p></div>
+          ))}
+        </div>
+      </section>
+
+      <figure class="reveal fig fig-rev">
+        <div class="shot" style="aspect-ratio:1440/660;">
+          <Image src={revisao} alt="Tela de revisão técnica do laudo" widths={[720, 1120, 1600]} sizes="(max-width: 860px) 100vw, 1008px" quality={80} loading="lazy" />
+        </div>
+        <figcaption>Revisão técnica: progresso por bloco, conformidade (atende, atende parcialmente, não atende) e motivo da devolução na mesma tela.</figcaption>
+      </figure>
+
+      <section class="reveal mobile">
+        <div>
+          <h2>Feito para o celular</h2>
+          <p>Quem preenche a vistoria está andando pela unidade, com o celular na mão. A tela foi desenhada para esse momento: uma área por vez, fotos direto da câmera e salvamento contínuo — se o sinal cair, nada se perde.</p>
+          <p>As fotos vão para o SharePoint que a Crislei já usa, organizadas em pastas por unidade e por laudo. O botão de cada e-mail já é o link de acesso: a unidade cai direto na tela da etapa, sem pedir outro link.</p>
+        </div>
+        <div class="phone">
+          <Image src={celular} alt="Checklist de vistoria no celular" widths={[340, 520, 680]} sizes="340px" quality={80} loading="lazy" />
+        </div>
+      </section>
+
+      <section class="reveal block proof">
+        <h2>Construído com prova</h2>
+        <p class="lead">Cada módulo só fechou com verificação que roda sozinha e falha alto. Antes de cada um, uma etapa de investigação confirmava as premissas antes de escrever código. Em outubro, uma rodada de testes com o cliente gerou 36 ajustes, todos em produção antes do go-live.</p>
+        <div class="nums">
+          {nums.map(([n, l]) => (
+            <div><div class="num">{n}</div><div class="num-l">{l}</div></div>
+          ))}
+        </div>
+      </section>
+
+      <figure class="reveal fig fig-det">
+        <div class="shot" style="aspect-ratio:1440/720;">
+          <Image src={detalhe} alt="Detalhe do laudo com documento emitido" widths={[720, 1120, 1600]} sizes="(max-width: 860px) 100vw, 1008px" quality={80} loading="lazy" />
+        </div>
+        <figcaption>Detalhe do laudo: histórico, modelo do documento, responsável técnico, datas e validade, tudo numa tela.</figcaption>
+      </figure>
+
+      <section class="reveal block narrow prod">
+        <h2>Em produção</h2>
+        <p>O portal entrou em produção em 30 de outubro de 2026, com os seis módulos do contrato e os ajustes da rodada de testes. Laudos antigos foram importados em lote, até 50 PDFs por vez, para que o painel nascesse com o histórico real de cada unidade.</p>
+        <p>Avisos de vencimento saem em 90, 30 e 7 dias, com um resumo semanal para a gestão. A partir de novembro o trabalho segue em contrato mensal de manutenção e evolução.</p>
+      </section>
+
+      <section class="reveal block narrow refl">
+        <h2>Reflexão</h2>
+        <p>Os problemas mais sérios só apareceram porque foram testados, não porque foram previstos. Uma falha de isolamento que só surgia com conexões reaproveitadas, por exemplo, passava em qualquer teste simples.</p>
+        <p>A outra lição foi sobre documentação: escrever só o que o sistema garante de fato. Uma promessa de segurança que não existe é pior do que nenhuma, porque alguém deixa de verificar por confiar nela.</p>
+      </section>
+
+      <section class="cs-foot">
+        <div>
+          <div class="foot-k">Portfólio</div>
+          <a href="/#projetos" class="foot-all">← Ver todos os projetos</a>
+        </div>
+        <div>
+          <div class="foot-k">Tem um processo parecido?</div>
+          <a href="mailto:pedro@cordeirolima.net" class="foot-mail">pedro@cordeirolima.net</a>
+        </div>
+      </section>
+    </main>
+  </div>
+</Layout>
+
+<script>
+  const glow = document.getElementById("glow");
+  if (glow && window.matchMedia("(hover: hover)").matches) {
+    window.addEventListener("mousemove", (e) => {
+      glow.style.transform = `translate(${e.clientX - 260}px, ${e.clientY - 260}px)`;
+      glow.style.opacity = "1";
+    });
+    document.documentElement.addEventListener("mouseleave", () => {
+      glow.style.opacity = "0";
+    });
+  }
+  const els = document.querySelectorAll<HTMLElement>(".reveal");
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.05, rootMargin: "0px 0px -5% 0px" },
+    );
+    els.forEach((el) => io.observe(el));
+  } else {
+    els.forEach((el) => el.classList.add("in"));
+  }
+</script>
+
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background: #f5f1e8 !important;
+    margin: 0;
+  }
+  ::selection {
+    background: #f3dfd3;
+  }
+</style>
+
+<style>
+  .cs {
+    --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+    --accent: #c1502e;
+    --line: #e4dcc9;
+    background: #f5f1e8;
+    color: #1c1a17;
+    font-family: "Hanken Grotesk", sans-serif;
+    min-height: 100vh;
+    position: relative;
+  }
+  .cs a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .cs a:hover {
+    color: #8c3a20;
+  }
+  .cs h1,
+  .cs h2,
+  .cs h3 {
+    font-family: "Instrument Serif", serif;
+    font-weight: 400;
+  }
+  .glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    background: radial-gradient(circle, rgba(193, 80, 46, 0.1) 0%, rgba(193, 80, 46, 0) 70%);
+    transform: translate(-260px, -260px);
+    transition: opacity 400ms ease;
+  }
+
+  .cs-bar {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 56px;
+    background: rgba(245, 241, 232, 0.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .cs .cs-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #1c1a17;
+  }
+  .cs-brand span {
+    font-family: "Instrument Serif", serif;
+    font-size: 24px;
+    line-height: 1;
+  }
+  .cs .cs-all {
+    color: #1c1a17;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 220ms var(--ease);
+  }
+  .cs-all span {
+    width: 22px;
+    height: 1px;
+    background: #8a7f6e;
+  }
+  .cs .cs-all:hover {
+    color: var(--accent);
+  }
+
+  .cs-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 56px;
+  }
+  .cs-hero {
+    padding: 88px 0 48px;
+  }
+  .eyebrow {
+    font-family: "Instrument Serif", serif;
+    font-style: italic;
+    font-size: 18px;
+    color: #8a7f6e;
+  }
+  .cs-hero h1 {
+    font-size: 76px;
+    line-height: 1.02;
+    margin: 14px 0 0;
+    letter-spacing: -0.015em;
+  }
+  .cs-sub {
+    font-family: "Instrument Serif", serif;
+    font-size: 26px;
+    line-height: 1.35;
+    color: #4a453c;
+    margin: 22px 0 0;
+    max-width: 30ch;
+    text-wrap: pretty;
+  }
+
+  .hero-shot {
+    position: relative;
+    margin-bottom: 56px;
+  }
+  .shot {
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .shot :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
+  .corner {
+    position: absolute;
+    top: -18px;
+    left: -18px;
+    width: 64px;
+    height: 64px;
+    border-top: 1px solid var(--accent);
+    border-left: 1px solid var(--accent);
+  }
+
+  .meta {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 32px;
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .meta-k {
+    font-size: 13px;
+    color: #8a7f6e;
+    margin-bottom: 6px;
+  }
+  .meta-v {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 700ms var(--ease), transform 700ms var(--ease);
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: none;
+  }
+
+  .block h2,
+  .mobile h2 {
+    font-size: 36px;
+    margin: 0 0 22px;
+  }
+  .block p,
+  .mobile p {
+    font-size: 17px;
+    line-height: 1.75;
+    color: #33302a;
+    margin: 0 0 18px;
+  }
+  .block p:last-child,
+  .mobile p:last-child {
+    margin-bottom: 0;
+  }
+  .narrow {
+    max-width: 640px;
+    padding: 72px 0 0;
+  }
+  .prod,
+  .refl {
+    padding-top: 80px;
+  }
+  .refl {
+    padding-bottom: 104px;
+  }
+
+  .challenge {
+    padding: 80px 0;
+  }
+  .challenge h2 {
+    margin-bottom: 28px;
+  }
+  .quote {
+    font-family: "Instrument Serif", serif;
+    font-style: italic;
+    font-size: 34px !important;
+    line-height: 1.3 !important;
+    color: #1c1a17 !important;
+    margin: 0 !important;
+    max-width: 28ch;
+    padding-left: 28px;
+    border-left: 1px solid var(--accent);
+    text-wrap: pretty;
+  }
+  .challenge .after {
+    margin: 32px 0 0;
+    max-width: 640px;
+  }
+
+  .path {
+    padding-bottom: 88px;
+  }
+  .path h2 {
+    margin-bottom: 12px;
+  }
+  .lead {
+    margin-bottom: 36px !important;
+    max-width: 640px;
+  }
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    border-top: 1px solid #1c1a17;
+  }
+  .steps li {
+    padding: 18px 16px 0 0;
+  }
+  .step-n {
+    font-family: "Instrument Serif", serif;
+    font-style: italic;
+    font-size: 15px;
+    color: #8a7f6e;
+  }
+  .step-t {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 6px 0;
+  }
+  .step-d {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #6b655a;
+  }
+  .steps li.hl .step-n,
+  .steps li.hl .step-t {
+    color: var(--accent);
+  }
+
+  .solution {
+    padding-bottom: 40px;
+  }
+  .solution h2 {
+    margin-bottom: 36px;
+  }
+  .sol-row {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+    gap: 40px;
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+  }
+  .sol-row:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .sol-row h3 {
+    font-size: 24px;
+    line-height: 1.2;
+    margin: 0;
+  }
+  .block .sol-row p {
+    font-size: 16px;
+    max-width: 60ch;
+  }
+
+  .fig {
+    margin: 0;
+  }
+  .fig-rev {
+    margin: 48px 0 96px;
+  }
+  .fig-det {
+    margin: 0 0 24px;
+  }
+  figcaption {
+    font-size: 14px;
+    color: #6b655a;
+    margin-top: 14px;
+  }
+
+  .mobile {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 72px;
+    align-items: center;
+    padding: 0 0 104px;
+  }
+  .phone {
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    overflow: hidden;
+    background: #fff;
+    aspect-ratio: 430/844;
+  }
+  .phone :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
+
+  .proof {
+    padding: 0 0 104px;
+  }
+  .proof h2 {
+    margin-bottom: 12px;
+  }
+  .nums {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 32px;
+  }
+  .nums > div {
+    border-top: 1px solid #1c1a17;
+    padding-top: 18px;
+  }
+  .num {
+    font-family: "Instrument Serif", serif;
+    font-size: 56px;
+    line-height: 1;
+  }
+  .num-l {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #6b655a;
+    margin-top: 10px;
+  }
+
+  .cs-foot {
+    padding: 56px 0 120px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+  }
+  .foot-k {
+    font-size: 14px;
+    color: #8a7f6e;
+    margin-bottom: 10px;
+  }
+  .cs .foot-all {
+    font-family: "Instrument Serif", serif;
+    font-size: 40px;
+    color: #1c1a17;
+    transition: color 220ms var(--ease);
+  }
+  .cs .foot-all:hover {
+    color: var(--accent);
+  }
+  .foot-mail {
+    font-family: "Instrument Serif", serif;
+    font-size: 24px;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 4px;
+    display: inline-block;
+    transition: padding-left 220ms var(--ease);
+  }
+  .foot-mail:hover {
+    padding-left: 6px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  @media (max-width: 860px) {
+    .cs-bar {
+      padding: 18px 24px;
+    }
+    .cs-wrap {
+      padding: 0 24px;
+    }
+    .cs-hero h1 {
+      font-size: 48px;
+    }
+    .cs-sub {
+      font-size: 20px;
+    }
+    .meta,
+    .steps,
+    .nums {
+      grid-template-columns: 1fr 1fr;
+    }
+    .sol-row,
+    .mobile {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .sol-row {
+      gap: 12px;
+    }
+    .quote {
+      font-size: 26px !important;
+    }
+    .phone {
+      max-width: 260px;
+    }
+    .corner {
+      left: -8px;
+    }
+  }
+</style>

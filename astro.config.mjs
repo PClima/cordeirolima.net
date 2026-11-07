@@ -9,8 +9,8 @@ export default defineConfig({
   site: 'https://cordeirolima.net',
   integrations: [
     sitemap({
-      // páginas de projeto ainda são placeholders (noindex) — fora do sitemap
-      filter: (page) => !page.includes('/projetos'),
+      // /projetos apenas redireciona para /#projetos — fora do sitemap
+      filter: (page) => !page.endsWith('/projetos/'),
     }),
   ],
   adapter: netlify(),
